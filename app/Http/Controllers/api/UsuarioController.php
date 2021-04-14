@@ -45,27 +45,28 @@ class UsuarioController extends Controller
         //
     }
 
-       public function show(Request $nome,$senha)
+       public function show($dados)
     {
-        $retorno = usuario::select('nome','tipo')->where('nome',$nome)->get();
-        return response()->json(["Usuario"=> $retorno],200);
-        $nomeV = usuario::select('nome')->where('nome',$nome)->get();
-        dd($nomeV);
-
-        dd(usuario::select('nome','tipo')->where('nome',$nome)->get());
-
-        if ($nomeV == true){
-            $senhaV = usuario::select('senha')->where('nome',$nome)->get();
-            
-            if($senha == $senhaV){
-                $retorno = usuario::select('nome','tipo')->where('nome',$nome)->get();
-                return response()->json(["Usuario"=> $retorno],200);
-            }else{
-                return response()->json(["Usuario"=> 'Erro Senha'],200);
-            }
+        
+        list($nome, $senha) = explode('&',$dados);
+        $nomev = usuario::select('nome')->where('nome',$nome)->get();
+        if($nomev->isEmpty()){
+           return response()->json(["Usuario"=> 'Erro Usuario'],404);
         }else{
-            return response()->json(["Usuario"=> 'Erro Usuario'],200);
+            if ($nomev[0]['nome'] == $nome){
+                $senhaV = usuario::select('senha')->where('nome',$nome)->get();
+                
+                if($senha == $senhaV[0]['senha']){
+                    $retorno = usuario::select('nome','tipo')->where('nome',$nome)->get();
+                    return response()->json(["Usuario"=> $retorno],200);
+                }else{
+                    return response()->json(["Usuario"=> 'Erro Senha'],404);
+                }
+            }else{
+                return response()->json(["Usuario"=> 'Erro Usuario'],404);
+            }
         }
+        
         
         
         /*$retorno = usuario::select('nome','tipo')->where('nome',$nome)->get();
