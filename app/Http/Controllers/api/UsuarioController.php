@@ -71,13 +71,13 @@ class UsuarioController extends Controller
                     return response()->json([
                         "Status" => 1,
                         "ERRO"=> 'Erro Senha']
-                        ,404);
+                        ,200);
                 }
             }else{
                 return response()->json([
                     "Status" => 1,
                     "ERRO"=> 'Erro Usuario']
-                    ,404);
+                    ,200);
             }
         }
         
