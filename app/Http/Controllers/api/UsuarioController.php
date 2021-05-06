@@ -63,14 +63,21 @@ class UsuarioController extends Controller
                     $data = json_decode($retorno);
                     //dd($data[0]->nome,$data[0]->tipo);
                     return response()->json([
+                        "Status" => 0,
                         "Nome"=> $data[0]->nome,
                         "Tipo"=>$data[0]->tipo]
                         ,200);
                 }else{
-                    return response()->json(["ERRO"=> 'Erro Senha'],404);
+                    return response()->json([
+                        "Status" => 1,
+                        "ERRO"=> 'Erro Senha']
+                        ,404);
                 }
             }else{
-                return response()->json(["ERRO"=> 'Erro Usuario'],404);
+                return response()->json([
+                    "Status" => 1,
+                    "ERRO"=> 'Erro Usuario']
+                    ,404);
             }
         }
         
