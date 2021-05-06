@@ -60,7 +60,7 @@ class UsuarioController extends Controller
                 
                 if($senha == $senhaV[0]['senha']){
                     $retorno = usuario::select('nome','tipo')->where('nome',$nome)->get();
-                    $retorno = response()->json($retorno);
+                    $retorno = json($retorno);
                     return response()->json(["Usuario"=> $retorno],200);
                 }else{
                     return response()->json(["Usuario"=> 'Erro Senha'],404);
