@@ -29,8 +29,9 @@ class UsuarioController extends Controller
         //dd($this->objUser->all());
         //dd($this->objUser->select('SELECT * FROM usuarios where idusuario = 1'));
         //$teste = $this->objUser->select('SELECT * FROM usuarios where idusuario = 1');
-        return $teste;
+       // return $teste;
         //return usuario::where('tipo',1)->get();
+        echo "aqui";
 
     }
 
