@@ -53,7 +53,10 @@ class UsuarioController extends Controller
         list($nome, $senha) = explode('&',$dados);
         $nomev = usuario::select('nome')->where('nome',$nome)->get();
         if($nomev->isEmpty()){
-           return response()->json(["Usuario"=> 'Erro Usuario'],404);
+           return response()->json([
+                "Status" => 1,
+                "ERRO"=> 'Erro Usuario'],
+                201);
         }else{
             if ($nomev[0]['nome'] == $nome){
                 $senhaV = usuario::select('senha')->where('nome',$nome)->get();
@@ -70,13 +73,13 @@ class UsuarioController extends Controller
                     return response()->json([
                         "Status" => 1,
                         "ERRO"=> 'Erro Senha']
-                        ,200);
+                        ,201);
                 }
             }else{
                 return response()->json([
                     "Status" => 1,
                     "ERRO"=> 'Erro Usuario']
-                    ,200);
+                    ,201);
             }
         }
         
