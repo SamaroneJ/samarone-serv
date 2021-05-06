@@ -67,10 +67,10 @@ class UsuarioController extends Controller
                         "Tipo"=>$data[0]->tipo]
                         ,200);
                 }else{
-                    return response()->json(["Usuario"=> 'Erro Senha'],404);
+                    return response()->json(["ERRO"=> 'Erro Senha'],404);
                 }
             }else{
-                return response()->json(["Usuario"=> 'Erro Usuario'],404);
+                return response()->json(["ERRO"=> 'Erro Usuario'],404);
             }
         }
         
