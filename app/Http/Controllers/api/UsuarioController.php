@@ -63,12 +63,14 @@ class UsuarioController extends Controller
                 
                 if($senha == $senhaV[0]['senha']){
                     $retorno = usuario::select('idusuario','nome','tipo')->where('nome',$nome)->get();
+                    $data = json_decode($retorno);
                     $id = $data[0]->idusuario;
                     $token = random_int(999,9999);
-                    usuario::table('usuarios')->where('idusuario', $id)->update(['token' => $token]);
+                    usuario::where('idusuario', $id)->update(['token' => $token]);
                     $data = json_decode($retorno);
                     return response()->json([
                         "Status" => 0,
+                        "ID" => $data[0]->idusuario,
                         "Nome"=> $data[0]->nome,
                         "Tipo"=>$data[0]->tipo,
                         "Token"=>$token
@@ -106,6 +108,9 @@ class UsuarioController extends Controller
 
        public function destroy($id)
     {
-        //
+        usuario::where('idusuario', $id)->update(['token' => $token]);
+        return response()->json([
+            "Status" => 0
+            ]
+            ,200);
     }
-}
