@@ -62,12 +62,17 @@ class UsuarioController extends Controller
                 $senhaV = usuario::select('senha')->where('nome',$nome)->get();
                 
                 if($senha == $senhaV[0]['senha']){
-                    $retorno = usuario::select('nome','tipo')->where('nome',$nome)->get();
+                    $retorno = usuario::select('idusuario','nome','tipo')->where('nome',$nome)->get();
+                    $id = $data[0]->idusuario;
+                    $token = random_int(999,9999);
+                    usuario::table('usuarios')->where('idusuario', $id)->update(['token' => $token]);
                     $data = json_decode($retorno);
                     return response()->json([
                         "Status" => 0,
                         "Nome"=> $data[0]->nome,
-                        "Tipo"=>$data[0]->tipo]
+                        "Tipo"=>$data[0]->tipo,
+                        "Token"=>$token
+                        ]
                         ,200);
                 }else{
                     return response()->json([
