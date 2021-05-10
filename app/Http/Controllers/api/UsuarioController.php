@@ -108,9 +108,11 @@ class UsuarioController extends Controller
 
        public function destroy($id)
     {
-        usuario::where('idusuario', $id)->update(['token' => $token]);
+        dd($id);
+        /*usuario::where('idusuario', $id)->update(['token' => 0]);
         return response()->json([
             "Status" => 0
             ]
-            ,200);
+            ,200);*/
     }
+}
