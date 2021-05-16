@@ -14,7 +14,16 @@ class addUserController extends Controller
      */
     public function index()
     {
-        echo "Está aqui index";
+        $data = usuario::distinct()->get();
+        if(!$data->isEmpty()){
+            $usuarios = json_decode($data);
+            return $usuarios;
+        }else{
+            return response()->json([
+                "Status" => 1,
+                "ERRO"=> 'Erro Sem Dados'],
+                201);
+        }
     }
 
     /**
