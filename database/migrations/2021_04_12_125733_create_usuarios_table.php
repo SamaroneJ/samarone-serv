@@ -19,6 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string( 'nome');
             $table->string( 'email');
             $table->integer('senha');
+            $table->integer('token');
             $table->timestamps();
         });
     }

@@ -88,12 +88,7 @@ class UsuarioController extends Controller
                     "ERRO"=> 'Erro Usuario']
                     ,201);
             }
-        }
-        
-        
-        
-        /*$retorno = usuario::select('nome','tipo')->where('nome',$nome)->get();
-        return response()->json(["Usuario"=> $retorno],200);*/
+        };
     }
 
         public function edit($id)
@@ -109,10 +104,5 @@ class UsuarioController extends Controller
        public function destroy($id)
     {
         dd($id);
-        /*usuario::where('idusuario', $id)->update(['token' => 0]);
-        return response()->json([
-            "Status" => 0
-            ]
-            ,200);*/
     }
 }

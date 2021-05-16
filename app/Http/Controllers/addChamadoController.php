@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Models\usuario;
+use App\Models\Models\chamados;
 
-class LogoutController extends Controller
+class addChamadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,18 +46,7 @@ class LogoutController extends Controller
      */
     public function show($id)
     {
-        if(usuario::where('idusuario', $id)->update(['token' => 0])==1){
-            return response()->json([
-                "Status" => 0
-                ]
-                ,200);
-        }else{
-            return response()->json([
-                "Status" => 1,
-                "ERRO"=> 'Erro Usuario']
-                ,201);
-        };
-        
+        //
     }
 
     /**
