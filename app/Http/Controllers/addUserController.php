@@ -78,7 +78,7 @@ class addUserController extends Controller
      */
     public function show($id)
     {
-        echo "Está aqui Show";
+
         $retorno = usuario::select('idusuario','nome','email','tipo','senha')->where('idusuario',$id)->get();
         if($retorno->isEmpty()){
            return response()->json([
@@ -88,8 +88,7 @@ class addUserController extends Controller
         }else{
             $data = json_decode($retorno);
             return response()->json($data
-                ,200);
-                
+                ,200);  
         }
     }
 
