@@ -108,7 +108,21 @@ class ChamadoController extends Controller
                     "ERRO"=> 'Erro Sem Dados'],
                     201);
             }
-        }else{
+        }
+        elseif($tipo==22){
+            $data = chamados::distinct()->where('id', $id)->get();
+            if(!$data->isEmpty()){
+                $chamados = json_decode($data);
+                //dd($chamados[0]->rua);
+                return $chamados;
+            }else{
+                return response()->json([
+                    "Status" => 1,
+                    "ERRO"=> 'Erro Sem Dados'],
+                    201);
+            }
+        }
+        else{
             return response()->json([
                 "Status" => 1,
                 "ERRO"=> 'Erro na consulta'],
@@ -125,7 +139,17 @@ class ChamadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $retorno = chamados::select('id', 'idusuario','idprefeitura','tipo','status','rua','bairro','cidade')->where('id',$id)->get();
+        if($retorno->isEmpty()){
+           return response()->json([
+                "Status" => 1,
+                "ERRO"=> 'Erro Usuario'],
+                201);
+        }else{
+            $data = json_decode($retorno);
+            return response()->json($data
+                ,200);
+        }
     }
 
     /**
@@ -137,7 +161,7 @@ class ChamadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo 'está no update';
+        //echo 'está no update';
         $obervacao = $request->obervacao;
         //dd($obervacao);
         if(chamados::where('id', $id)->update(['observacao' => $obervacao])==1){
