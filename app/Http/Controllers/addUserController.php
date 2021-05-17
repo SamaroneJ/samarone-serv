@@ -122,8 +122,7 @@ class addUserController extends Controller
                 'tipo' => $tipo, 
                 'nome' => $nome,
                 'email' => $email,
-                'senha' => $senha,
-                'token' => 0
+                'senha' => $senha
             ]
         )==1){
             return response()->json([

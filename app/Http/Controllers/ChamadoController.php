@@ -83,8 +83,6 @@ class ChamadoController extends Controller
     public function show($id)
     {
         list($id, $tipo) = explode('&',$id);
-        echo $id;
-        echo $tipo;
         if($tipo == 1){
             $data = chamados::distinct()->where('idusuario', $id)->get();
             if(!$data->isEmpty()){
