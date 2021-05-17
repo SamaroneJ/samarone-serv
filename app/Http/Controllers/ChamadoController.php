@@ -83,7 +83,7 @@ class ChamadoController extends Controller
     public function show($id)
     {
         list($id, $tipo) = explode('&',$id);
-        if($tipo == 1){
+        if($tipo == 3){
             $data = chamados::distinct()->where('idusuario', $id)->get();
             if(!$data->isEmpty()){
                 $chamados = json_decode($data);
